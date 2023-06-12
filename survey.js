@@ -21,6 +21,8 @@ const questions = [
   'What is your superpower? In a few words, tell us what you are amazing at!'
 ];
 
+const answers = {};
+
 rl.question('What do you think of Node.js? ', (answer) => {
   console.log(`Thank you for your valuable feedback: ${answer}`);
 
