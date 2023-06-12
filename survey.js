@@ -9,7 +9,7 @@ const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
-}); 
+});
 
 const questions = [
   'What\'s your name? Nicknames are also acceptable :)',
@@ -23,11 +23,23 @@ const questions = [
 
 const answers = {};
 
-rl.question('What do you think of Node.js? ', (answer) => {
-  console.log(`Thank you for your valuable feedback: ${answer}`);
 
-  rl.close();
-});
+const askQuestion = function(index) {
+  rl.question(questions[index], (answer) => {
+    answers[index] = answer;
+    if (index < questions.length - 1) {
+      askQuestion(index + 1);
+    } else {
+      console.log('\nSurvey Results:');
+      for (let i = 0; i < questions.length; i++) {
+        console.log(`${questions[i]} Answer: ${answers[i]}`);
+      }
+      rl.close();
+    }
+  });
+};
+
+askQuestion(0);
 
 // this is one big nested callback
 
